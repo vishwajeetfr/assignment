@@ -1,5 +1,6 @@
 package com.leucine.assignment.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Builder(toBuilder = true)
@@ -12,5 +13,6 @@ import lombok.*;
 public class JwtResponse {
     private String jwtToken;
     private String userName;
+    @JsonIgnore
     private String role;
 }

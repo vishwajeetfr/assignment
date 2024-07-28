@@ -4,6 +4,7 @@ import com.leucine.assignment.entity.ApplicationUser;
 import com.leucine.assignment.exception.ResourceNotFoundExeception;
 import com.leucine.assignment.repository.ApplicationUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,11 @@ public class ApplicationUserService {
     @Autowired
     private ApplicationUserRepository applicationUserRepository;
 
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
+
     public ApplicationUser createUser(ApplicationUser user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return applicationUserRepository.save(user);
     }
 

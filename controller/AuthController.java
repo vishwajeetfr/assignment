@@ -39,23 +39,19 @@ public class AuthController {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getUserName());
         String token = this.helper.generateToken(userDetails);
-        final String userRole;
-        if(request.getUserName().equals("teacher1")){
-            userRole = "TEACHER";
-        } else {
-            userRole = "STUDENT";
-        }
 
         JwtResponse response = JwtResponse.builder()
                 .jwtToken(token)
-                .role(userRole)
+                //.role(userDetails.getRole())
                 .userName(userDetails.getUsername()).build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    private void doAuthenticate(String email, String password) {
+    private void doAuthenticate(String username, String password) {
 
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, password);
+
         try {
             manager.authenticate(authentication);
 

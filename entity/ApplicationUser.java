@@ -1,7 +1,5 @@
 package com.leucine.assignment.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,8 +22,8 @@ public class ApplicationUser {
     private String username;
     @Column(nullable = false)
     @NotEmpty(message = "Password cannot be empty")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JsonIgnore
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonIgnore
     private String password;
     private String role;
 
