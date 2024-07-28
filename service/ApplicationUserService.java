@@ -38,6 +38,7 @@ public class ApplicationUserService {
     public ApplicationUser updateUser(Long id, ApplicationUser user) {
         if (applicationUserRepository.existsById(id)) {
             user.setId(id);
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
             return applicationUserRepository.save(user);
         }
         return null;

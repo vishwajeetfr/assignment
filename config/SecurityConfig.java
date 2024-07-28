@@ -61,7 +61,6 @@ public class SecurityConfig {
         return builder.getAuthenticationManager();
     }
 
-
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
