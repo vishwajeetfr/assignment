@@ -31,6 +31,10 @@ public class ApplicationUserService {
         return applicationUserRepository.findById(id).orElse(null);
     }
 
+    public ApplicationUser getUserByUserName(String username) {
+        return applicationUserRepository.findByUsername(username).orElseThrow(()-> new RuntimeException("User Not Found"));
+    }
+
     public void deleteUser(Long id) {
         applicationUserRepository.deleteById(id);
     }

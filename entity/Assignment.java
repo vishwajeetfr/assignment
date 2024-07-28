@@ -29,9 +29,15 @@ public class Assignment {
     private String clazz;
     @Column(name = "attachment_url")
     private String attachmentUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "class_id", referencedColumnName = "id")
+    private Class classId;
+
     @ManyToOne
     @JoinColumn(name = "created_by", referencedColumnName = "id")
     private ApplicationUser createdBy;
+
 
 
 }

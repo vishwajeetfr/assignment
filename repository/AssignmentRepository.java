@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AssignmentRepository extends JpaRepository<Assignment, Long> {
     List<Assignment> findByCreatedBy_Id(Long teacherId);
-    List<Assignment> findByClazz(String clazz);
+    List<Assignment> findAllByClazz(String clazz);
 }

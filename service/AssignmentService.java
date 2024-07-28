@@ -42,7 +42,7 @@ public class AssignmentService {
     }
 
     public List<Assignment> getAssignmentsByClass(String clazz) {
-        return assignmentRepository.findByClazz(clazz);
+        return assignmentRepository.findAllByClazz(clazz);
     }
 
     public AssignmentDTO updateAssignment(Long assignmentId, AssignmentDTO updatedAssignmentDTO) {

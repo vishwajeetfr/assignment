@@ -23,14 +23,15 @@ public class SubmissionService {
     @Autowired
     private AssignmentService assignmentService;
 
-//    public Submission createSubmission(Submission submission) {
-//        return submissionRepository.save(submission);
-//    }
+
 
     public SubmissionDTO createSubmission(SubmissionDTO submissionDTO) {
         LocalDateTime currentDate = LocalDateTime.now();
         final var submittedBy = applicationUserService.getUserByUsername(submissionDTO.getSubmittedBy());
         final var assignment = assignmentService.getAssignmentById(submissionDTO.getAssignmentId());
+        if (!submittedBy.getClassId().getId().equals(assignment.getClassId().getId())) {
+            throw new RuntimeException("Student is not allowed to submit this assignment for a different class.");
+        }
         final var submission = SubmissionMapper.mapToSubmission(submissionDTO, currentDate, assignment, submittedBy);
         final var careatedSubmission =  submissionRepository.save(submission);
         return SubmissionMapper.mapToSubmissionDTO(careatedSubmission, submissionDTO.getSubmittedBy());

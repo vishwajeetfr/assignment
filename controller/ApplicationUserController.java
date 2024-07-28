@@ -19,6 +19,11 @@ public class ApplicationUserController {
         return applicationUserService.getUserById(id);
     }
 
+    @GetMapping("/username/{username}")
+    public ApplicationUser getUserByUserName(@PathVariable String username) {
+        return applicationUserService.getUserByUserName(username);
+    }
+
     @GetMapping
     public List<ApplicationUser> getAllUsers() {
         return applicationUserService.getAllUsers();
