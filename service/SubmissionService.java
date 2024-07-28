@@ -29,7 +29,8 @@ public class SubmissionService {
         LocalDateTime currentDate = LocalDateTime.now();
         final var submittedBy = applicationUserService.getUserByUsername(submissionDTO.getSubmittedBy());
         final var assignment = assignmentService.getAssignmentById(submissionDTO.getAssignmentId());
-        if (!submittedBy.getClassId().getId().equals(assignment.getClassId().getId())) {
+
+        if (!submittedBy.getClassId().getName().equals(assignment.getClazz())) {
             throw new RuntimeException("Student is not allowed to submit this assignment for a different class.");
         }
         final var submission = SubmissionMapper.mapToSubmission(submissionDTO, currentDate, assignment, submittedBy);
