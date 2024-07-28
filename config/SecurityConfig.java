@@ -48,21 +48,6 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(){
-//        UserDetails studentUser = User.withUsername("student3_class11")
-//                .password(passwordEncoder().encode("password123"))
-//                .roles("STUDENT")
-//                .build();
-//
-//        UserDetails teacherUser = User.withUsername("teacher1")
-//                .password(passwordEncoder().encode("password123"))
-//                .roles("TEACHER")
-//                .build();
-//
-//
-//        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager(
-//                studentUser,
-//                teacherUser);
-//        return inMemoryUserDetailsManager;
         return new CustomUserDetailService();
     }
 
